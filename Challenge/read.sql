@@ -46,3 +46,12 @@ SELECT SUM(priceEach) as sumPrice FROM orderdetails where productCode="S18_1749"
 
 -- 고급
 -- (1) customers 테이블에서 각 지역별 고객 수를 계산하세요.
+SELECT city, COUNT(*) FROM customers GROUP BY city;
+-- (2) products 테이블에서 각 제품 카테고리별 평균 가격을 계산하세요.
+SELECT `productCode`, AVG(`buyPrice`) FROM products GROUP BY productCode;
+-- (3) employees 테이블에서 각 부서별 직원 수를 계산하세요.
+SELECT officeCode, COUNT(*) as "직원수" FROM employees GROUP BY officeCode;
+-- (4) offices 테이블에서 각 사무실별 평균 직원 연봉을 계산하세요. 
+SELECT officeCode, AVG(*) FROM offices GROUP BY officeCode; -- offices 테이블엔 연봉컬럼이 존재하지 않음
+-- (5) orderdetails 테이블에서 가장 많이 팔린 제품 5개를 조회하세요.
+SELECT productCode, sum(`quantityOrdered`) as bestSeller FROM orderdetails GROUP BY `productCode` ORDER BY bestSeller desc LIMIT 5;
